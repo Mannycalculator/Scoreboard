@@ -1,0 +1,61 @@
+:root {
+  --fg:#eaeaea; --bg:#0b0b0f; --muted:#9aa0a6; --accent:#3ec7e8;
+  --card:#0f141c; --border:#1e2635; --chrome:#11131a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;overflow:hidden}
+.wrap{height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+.topbar,.bottombar{background:var(--chrome);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bottombar{border-top:1px solid var(--border);border-bottom:none}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+select,input[type="date"]{background:#121826;border:1px solid #222a35;color:var(--fg);padding:8px 10px;border-radius:10px;font-size:16px}
+button{background:#1b2330;border:1px solid #283142;color:var(--fg);padding:10px 14px;border-radius:12px;cursor:pointer;font-size:16px}
+button:hover{border-color:#3a465d}
+.toggle{display:flex;align-items:center;gap:8px}
+.toggle input{transform:scale(1.2)}
+.hint{color:var(--muted);font-size:13px}
+.nav{display:flex;gap:8px}
+.stage{display:grid;place-items:center;padding:24px}
+.card{width:min(1200px,96vw);background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:28px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:clamp(12px,2vw,14px)}
+.status{color:var(--accent);font-weight:700}
+.teams{display:grid;grid-template-rows:auto auto;gap:12px;margin-top:18px}
+.teamrow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding:6px 0}
+.teamrow .info{display:flex;align-items:center;gap:14px;min-width:0}
+.teamrow .logo{width:60px;height:60px;border-radius:12px;background:#0b0f15;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #1b2330}
+.teamrow .logo img{max-width:100%;max-height:100%}
+.teamrow .name{font-size:clamp(20px,4vw,32px);font-weight:700}
+.teamrow .record{font-size:14px;color:var(--muted)}
+.teamrow .score{text-align:right;min-width:80px;font-size:clamp(42px,8vw,96px);font-weight:900;line-height:1}
+.linescore{margin-top:22px;border-top:1px dashed #2a3446;padding-top:16px;overflow:auto}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px 10px;text-align:center;border-bottom:1px solid #1b2330}
+.table th{color:#b7bec9;font-weight:700}
+.table .teamcell{text-align:left;font-weight:700}
+.ticker{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}
+.empty{opacity:.75;text-align:center;padding:30px}
+.situation{display:flex;align-items:center;gap:14px;margin-top:14px;color:#cbd5e1}
+.badge{background:#182030;border:1px solid #263046;padding:6px 10px;border-radius:999px;font-size:13px}
+
+/* Base diamond spacing (tight, non-touching) */
+.situation .base-diamond{width:42px;height:38px;position:relative;margin-left:8px}
+.situation .base-diamond .base{width:10px;height:10px;position:absolute;background:#0b0f15;border:2px solid #2a3446;border-radius:2px;transform:rotate(45deg)}
+.situation .base-diamond .base.on{background:#f1c40f;border-color:#fef08a;box-shadow:0 0 3px #facc15}
+.situation .base-diamond .base.second{top:8px;left:50%;transform:translateX(-50%) rotate(45deg)}
+.situation .base-diamond .base.first{bottom:6px;right:8px}
+.situation .base-diamond .base.third{bottom:6px;left:8px}
+
+/* Fade/slide swap animation */
+@keyframes fadeSwap{from{opacity:0;transform:translateY(8px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+.swap-anim{animation:fadeSwap 1.35s ease both}
+
+/* Auto-hide header & footer */
+.topbar,.bottombar{transition:opacity .5s ease,transform .5s ease;will-change:opacity,transform}
+.topbar.hidden{opacity:0;transform:translateY(-20px);pointer-events:none}
+.bottombar.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+
+
+/* Prevent grey scrollbar flash on auto-hide transitions */
+* { scrollbar-width: none; }            /* Firefox */
+*::-webkit-scrollbar { width: 0; height: 0; }  /* Chromium/WebKit */

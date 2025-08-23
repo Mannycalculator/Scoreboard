@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live Scoreboard – MLB / NFL / NBA</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="controls">
+        <select id="league" aria-label="League">
+          <option value="mlb">MLB</option>
+          <option value="nfl">NFL</option>
+          <option value="nba">NBA</option>
+        </select>
+        <input id="date" type="date" aria-label="Date" />
+        <label class="toggle">
+          <input id="autorotate" type="checkbox" checked />
+          <span>Auto-rotate</span>
+        </label>
+        <span class="hint">Refreshes every 30s when live</span>
+      </div>
+      <nav class="nav">
+        <button id="prev" aria-label="Previous game">◀ Prev</button>
+        <button id="next" aria-label="Next game">Next ▶</button>
+      </nav>
+    </header>
+
+    <main class="stage" role="main" aria-live="polite">
+      <section class="card">
+        <div id="content" class="empty">Loading today’s games…</div>
+      </section>
+    </main>
+
+    <footer class="bottombar">
+      <div class="ticker" id="ticker"></div>
+      <div class="credits">Data from public scoreboard JSON (personal use).</div>
+    </footer>
+  </div>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
